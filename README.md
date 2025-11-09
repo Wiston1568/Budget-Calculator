@@ -47,6 +47,18 @@ if (remaining < 0)
 else
     printf("Good job! You stayed within your budget.\n");
 In VSCode’s terminal, compile the program:
-gcc budget_calculator.c -o budget
- to run: ./budget
+gcc budget_calculator.c -o budget ps dis shit on kali 
+run  ./budget
+— Compile your program
 
+In VS Code’s terminal (open in the folder with your file), run:
+gcc budget_calculator.c -o budget.exe
+
+-o budget.exe tells GCC to make an executable named budget.exe.
+
+STEP 4 — Run it
+To run it (PowerShell or CMD):
+.\budget.exe
+If you’re using Git Bash inside VS Code, you can run:
+./budget.exe
+You should now see your program’s output — just like in Kali.
