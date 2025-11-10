@@ -52,7 +52,8 @@ run  ./budget
 — Compile your program
 
 In VS Code’s terminal (open in the folder with your file), run:
-gcc budget_calculator.c -o budget.exe
+
+gcc "Weekly Budget Calculator.c" -o budget.exe
 
 -o budget.exe tells GCC to make an executable named budget.exe.
 
