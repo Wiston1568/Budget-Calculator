@@ -1,31 +1,72 @@
 #include <stdio.h>  
 
 int main() {
-    float budget, expenses[7], totalSpent = 0, remaining;
-    int i;
+    float weeklyBudget, remainingBudget, dailySpent, newDailyLimit;
+    int day;
+
+    printf("=== SMART WEEKLY BUDGET PLANNER===\n")
 
     // --- Input Section ---
-    printf("Enter your total weekly budget: ");
-    scanf("%f", &budget); 
-    printf("\nEnter your daily expenses for 7 days:\n");
-    for(i = 0; i < 7; i++) {
-        printf("Day %d: ", i + 1);
-        scanf("%f", &expenses[i]);   
-        totalSpent += expenses[i];   
+    printf("Enter Your Total Budget For The Week: ");
+    scanf("%f", &weeklyBudget); 
+
+    // --- Initial Setup ---
+    remainingBudget = weeklyBudget;
+    newDailyLimit = weeklyBudget / 7;
+
+    printf("\nYour starting Daily Limit is: %.2f/n", newDailyLimit);
+    printf("Let's plan your week wisely! n\n");
+
+    // --- Daily Loop ---
+    for (day = 1; day <=7; day++) {
+        printf("----- Day %d ------\n", day);
+        printf("Your suggested daily limit is: %.2f\n", newDailyLimit);
+        printf("Suggested spending breakdown:\n");
+        printf("  - Essentials (food,transport): %.2f\n", newDailyLimit * 0.5);
+        printf("  - Personal/Leisure: %.2f\n", newDailyLimit * 0.3);
+        printf("  - Savings/Emergency: %.2f\n", newDailyLimit * 0.2);
+
+        //---Input: Daily Spending
+        printf("\nEnter how much you exactly spent today: ");
+        scanf("%f", &dailySpent);
+
+        //Input:---Calculations & Output
+        remainingBudget -= dailySpent;
+
+        if (dailySpent > newDailyLimit) {
+            printf("⚠️ You overspent by %.2f today.\n", dailySpent - newDailyLimit");
+        } else if (dailySpent < newDailyLimit) { 
+            printf("💰 You saved %.2f today!\n", newDailyLimit - dailySpent)
+        } else {
+            printf("✅ Perfect spending today.\n")
+        }
+
+        if (remainingBudget < 0){
+            print("\n🚨 You’ve run out of money for the week!\n");
+            break;
+        }
+
+        //--- Update Limit ---
+        int daysLeft = 7 - day;
+        if (daysLeft > 0) {
+            newDailyLimit = remainingBudget / daysLeft;
+            printf("\nRemaining weekly budget: %.2f\n", remainingBudget)
+            printf("New daily limit for next %d days: %.2f\n\n", daysLeft, newDailyLimit);
+        } else {
+            printf("\nWeek completed!\n")
     }
 
-    // --- Process Section ---
-    remaining = budget - totalSpent;  
+    //---Final Output---
+    printf("\n=== WEEK SUMMARY ===\n");
+    if (remainingBudget > 0) {
+        printf("🎉 You ended the week with %.2f left. Smart saving!\n", remainingBudget);
+    } else if (remainingBudget == 0) {
+        printf("✅ You perfectly used your weekly budget.\n");
+    } else {
+        printf("⚠️ You overspent your weekly budget by %.2f.\n", -remainingBudget);)
+    }
 
-    // --- Output Section ---
-    printf("\n--- Weekly Budget Summary ---\n");
-    printf("Total Spent: %.2f\n", totalSpent);
-    printf("Remaining Balance: %.2f\n", remaining);
+    printf("\n💡 Tip: Keep Essentials at 50%%, Leisure at 30%%, Savings at 20%% each day.\n");
 
-    if (remaining < 0)
-        printf("Warning: You have overspent your budget!\n");
-    else
-        printf("Good job! You stayed within your budget.\n");
-
-    return 0;  // End program
+    return 0;
 }
