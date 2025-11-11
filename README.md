@@ -63,3 +63,4 @@ To run it (PowerShell or CMD):
 If you’re using Git Bash inside VS Code, you can run:
 ./budget.exe
 You should now see your program’s output — just like in Kali.
+https://github.com/Wiston1568/Budget-Calculator
